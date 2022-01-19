@@ -59,6 +59,7 @@ class SelectPgSQL(object):
         return results
 
     def get_csv_result(self, filename):
+        results = self.select_data(sql)
         pass
 
 
