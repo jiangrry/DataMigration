@@ -1,0 +1,18 @@
+# !/usr/bin/python
+# -*- coding: UTF-8 _*_
+
+# 173 MySQL数据库连接配置
+MySQL:
+  Mhost: '10.1.1.173'
+  Mport: '3306'
+  Muser: 'yyuser'
+  Mpassword: 'iPh@23ysq!'
+  Mdatabase: 'ipharmacare_review'
+
+# 174 PgSQL数据库连接配置
+PgSQL:
+  Phost: '10.1.1.174'
+  Pport: '5432'
+  Puser: 'yyuser'
+  Ppassword: 'iPh@23ysq!'
+  Pdatabase: review_3to4_upgrade_test
