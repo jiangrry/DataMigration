@@ -60,6 +60,8 @@ class SelectPgSQL(object):
 
     def get_csv_result(self, filename):
         results = self.select_data(sql)
+
+        # 获取上一次的数据，引入进行转换
         pass
 
 
