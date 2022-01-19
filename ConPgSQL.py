@@ -58,15 +58,19 @@ class SelectPgSQL(object):
         print('Data write is over!')
         return results
 
+    def get_csv_result(self, filename):
+        pass
+
 
 if __name__ == '__main__':
     sql = "SELECT * FROM review_3to4_upgrade_test.evaluate.evaluate_sample_data_statement WHERE project_id in (SELECT id FROM review_3to4_upgrade_test.evaluate.evaluate_project WHERE name in ('升级项目005-OPT问题代码','升级项目006-IPT问题代码','升级项目007-OPT少量','升级项目008-IPT少量'));"
     select = SelectPgSQL()
-    result1 = select.get_result(sql, 'E:/Work/HZYY/DataMigration/txt/PgSQL/evaluate_sample_data_statement.txt')
+    # result1 = select.get_result(sql, 'E:/Work/HZYY/DataMigration/txt/PgSQL/evaluate_sample_data_statement.txt')
+    result1 = select.get_result(sql, 'E:/Work/HZYY/DataMigration/txt/PgSQL/evaluate_sample_data_statement_test.csv')
     print(result1)
 
-t = result1
-df = pd.DataFrame(t)
-print(df)
-
-df.to_csv('E:/Work/HZYY/DataMigration/csv/PgSQL/evaluate_sample_data_statement.csv', index=True, header=True)
+# t = result1
+# df = pd.DataFrame(t)
+# print(df)
+#
+# df.to_csv('E:/Work/HZYY/DataMigration/csv/PgSQL/evaluate_sample_data_statement.csv', index=True, header=True)

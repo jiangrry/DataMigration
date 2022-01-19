@@ -21,9 +21,9 @@ class ReadFile():
         return data
 
 
-filename = 'test.txt'
-ReadFile(filename)
-t = ReadFile.readtxtfile(filename)
-print(t)
+# filename = 'test.txt'
+# ReadFile(filename)
+# t = ReadFile.readtxtfile(filename)
+# print(t)
 
 
