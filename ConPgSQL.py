@@ -13,6 +13,8 @@
 import psycopg2 as PgMySQLdb
 import json
 import pandas as pd
+import os
+from Csv_to_dict import csv_to_dict
 
 host = '10.1.1.174'
 user = 'yyuser'
@@ -22,7 +24,7 @@ database = 'review_3to4_upgrade_test'
 port = '5432'
 
 
-class SelectPgSQL(object):
+class Data_PgSQL(object):
     def select_data(self, sql):
         global cur, conn
         result = []
@@ -54,26 +56,30 @@ class SelectPgSQL(object):
         print('The amount of datas: %d' % (len(results)))
         with open(filename, 'w') as f:
             for result in results:
-                f.write(str(result) + '\n')
+                # f.write(str(result) + '\n')
+                f.write(str(result) + ',\n')
         print('Data write is over!')
         return results
 
-    def get_csv_result(self, filename):
-        results = self.select_data(sql)
+    # def get_csv_result(self, filename):
+    #     with open(filename,'r') as f1:
+    #         f1.read()
 
-        # 获取上一次的数据，引入进行转换
-        pass
+    # 获取上一次的数据，引入进行转换
 
 
 if __name__ == '__main__':
     sql = "SELECT * FROM review_3to4_upgrade_test.evaluate.evaluate_sample_data_statement WHERE project_id in (SELECT id FROM review_3to4_upgrade_test.evaluate.evaluate_project WHERE name in ('升级项目005-OPT问题代码','升级项目006-IPT问题代码','升级项目007-OPT少量','升级项目008-IPT少量'));"
-    select = SelectPgSQL()
+    select = Data_PgSQL()
     # result1 = select.get_result(sql, 'E:/Work/HZYY/DataMigration/txt/PgSQL/evaluate_sample_data_statement.txt')
-    result1 = select.get_result(sql, 'E:/Work/HZYY/DataMigration/txt/PgSQL/evaluate_sample_data_statement_test.csv')
+    filename = os.path.join(os.path.abspath('./txt/PgSQL'), 'evaluate_sample_data_assign.txt')
+
+    result1 = select.get_result(sql, filename)
     print(result1)
 
-# t = result1
-# df = pd.DataFrame(t)
-# print(df)
-#
-# df.to_csv('E:/Work/HZYY/DataMigration/csv/PgSQL/evaluate_sample_data_statement.csv', index=True, header=True)
+    # t = result1
+    # df = pd.DataFrame(t)
+    # print(df)
+    # df.to_csv('E:/Work/HZYY/DataMigration/csv/PgSQL/evaluate_sample_data_statement.csv', index=True, header=True)
+
+    print()
