@@ -7,32 +7,22 @@
 # @SoftWare : PyCharm
 
 
-
-
 import json
-import os
 import pprint
-
+from csv import DictReader
+import os
 
 def csv_to_dict(filename):
     try:
-        with open(filename, 'r',encoding='utf-8') as file:
-            header, *lines = file.readlines()  # 读取文件数据（包含第一行列名）
-            header = header.split(",")  # 第一行列名
-            header = [i.strip() for i in header]  # 格式化
-            lines = [i.strip() for i in lines]
-            result = {}
-            for counter, line in enumerate(lines):
-                line_dict = {}
-                for idx, item in enumerate(line.split(",")):
-                    line_dict[header[idx]] = item
-                result[str(counter)] = line_dict
-            return result
+        with open(filename, 'r',encoding='utf-8') as read_obj:
+            dict_reader = DictReader(read_obj)
+            list_of_dict = list(dict_reader)
+            result = json.dumps(list_of_dict, indent=2)
+        return result
     except IOError as err:
         print("I/O error({0})".format(err))
-
+#
 # if __name__ == "__main__":
-#     filename = os.path.join(os.getcwd(), 'evaluate_project.csv')
+#     filename = os.path.join(os.path.abspath('./csv/MySQL'), 'evaluate_project.csv')
 #     result = csv_to_dict(filename)
-#     # pprint.pprint(result)
-#     print(json.dumps(result,indent=2))
+#     print(result)
